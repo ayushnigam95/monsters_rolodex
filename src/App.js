@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
@@ -8,21 +8,14 @@ class App extends Component {
 
     // this.state comes from Component class
     this.state = {
-      monsters: [
-        {
-          name: "Frankstein",
-          id: "1"
-        },
-        {
-          name: "batman",
-          id: "2"
-        },
-        {
-          name: "superman",
-          id: "3"
-        },
-      ],
+      monsters: []
     };
+  }
+  componentDidMount(){
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => response.json())
+    .then(user => this.setState({monsters: user}))
+    .catch(err => console.log("ERROR"));
   }
 
   render() {
