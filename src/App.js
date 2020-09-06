@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import { CardList } from "./components/card-list/card-list.component"
 import "./App.css";
 
@@ -35,14 +35,9 @@ class App extends Component {
     return (
       <div className="App">
         {/* props are whatever being passed on to components */}
-        <CardList name="Ayush">
+        <CardList monsters={this.state.monsters} />
         {/* props childern is whatever being passed inside components */}
-        {/* Ayush */}
-        {this.state.monsters.map((monster) => (
-          <h1 key= {monster.id}>{monster.name}</h1>
-        ))}
-        </CardList>
-        
+        {/* Ayush */}        
       </div>
     );
   }
