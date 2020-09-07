@@ -23,6 +23,7 @@ class App extends Component {
           id: "3"
         },
       ],
+      searchField: null
     };
   }
   componentDidMount(){
@@ -34,6 +35,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <input type="search" 
+          placeholder="Search"
+          onChange= {e => {
+            console.log(e.target.value)
+            this.setState({searchField: e.target.value}, () =>{
+              console.log(this.state)
+            })
+          }
+          } 
+        />
         {/* props are whatever being passed on to components */}
         <CardList monsters={this.state.monsters} />
         {/* props childern is whatever being passed inside components */}
