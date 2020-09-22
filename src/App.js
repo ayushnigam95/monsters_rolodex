@@ -37,11 +37,14 @@ class App extends Component {
       <div className="App">
         <input type="search" 
           placeholder="Search"
+          // e is synthetic event here
           onChange= {e => {
-            console.log(e.target.value)
-            this.setState({searchField: e.target.value}, () =>{
-              console.log(this.state)
+            // console.log(">> SYNTHETIC EVENT", e, "<<")
+            // console.log(e.target.value)
+            this.setState({searchField: e.target.value}, () =>{ // this.setState is async call
+              console.log(this.state) // calling console log in call back
             })
+            console.log(this.state) // calling console log not in call back
           }
           } 
         />
