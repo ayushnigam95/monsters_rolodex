@@ -32,7 +32,21 @@ class App extends Component {
     .then(users => this.setState({monsters: users})) 
   }
 
+  filterMonstersByCharacter() {
+    const {monsters, searchField} = this.state
+    var filtered_monsters = []
+    if(searchField!=null){
+      filtered_monsters = monsters.filter(o => o.name.toLowerCase().includes( searchField.toLowerCase()))
+    }else{
+      return monsters
+    }
+    console.log("filtered monsters", filtered_monsters)
+    return filtered_monsters
+  }
   render() {
+    // const {monsters, searchField} = this.state
+    // const filtered_monsters = monsters.filter(o => o.name.toLowerCase().includes( searchField.toLowerCase()))
+
     return (
       <div className="App">
         <input type="search" 
@@ -49,7 +63,7 @@ class App extends Component {
           } 
         />
         {/* props are whatever being passed on to components */}
-        <CardList monsters={this.state.monsters} />
+        <CardList monsters={this.filterMonstersByCharacter()} />
         {/* props childern is whatever being passed inside components */}
         {/* Ayush */}        
       </div>
