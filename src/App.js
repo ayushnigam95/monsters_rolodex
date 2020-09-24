@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import logo from "./logo.svg";
 import { CardList } from "./components/card-list/card-list.component"
+import { SearchBox } from "./components/search-box/search-box.component"
 import "./App.css";
 
 class App extends Component {
@@ -43,24 +44,26 @@ class App extends Component {
     console.log("filtered monsters", filtered_monsters)
     return filtered_monsters
   }
+
+  handler = e => {
+    // console.log(">> SYNTHETIC EVENT", e, "<<")
+    // console.log(e.target.value)
+    this.setState({searchField: e.target.value}, () =>{ // this.setState is async call
+      console.log(this.state) // calling console log in call back
+    })
+    console.log(this.state) // calling console log not in call back
+  }
+  
   render() {
     // const {monsters, searchField} = this.state
     // const filtered_monsters = monsters.filter(o => o.name.toLowerCase().includes( searchField.toLowerCase()))
 
     return (
       <div className="App">
-        <input type="search" 
-          placeholder="Search"
-          // e is synthetic event here
-          onChange= {e => {
-            // console.log(">> SYNTHETIC EVENT", e, "<<")
-            // console.log(e.target.value)
-            this.setState({searchField: e.target.value}, () =>{ // this.setState is async call
-              console.log(this.state) // calling console log in call back
-            })
-            console.log(this.state) // calling console log not in call back
-          }
-          } 
+        <h1>Monsters Rolodex</h1>
+        <SearchBox 
+          placeholder="Search Monsters" 
+          handler= {this.handler}
         />
         {/* props are whatever being passed on to components */}
         <CardList monsters={this.filterMonstersByCharacter()} />
